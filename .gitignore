@@ -1,5 +1,7 @@
 node_modules/*
 .nyc_output/*
+.yalc/*
+yalc.lock
 wallet-info.txt
 wallet.json
 integration-test-sweet.sh

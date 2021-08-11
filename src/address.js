@@ -208,7 +208,7 @@ class Address {
     const hash = Buffer.from(decoded.hash)
     if (type === 'P2PKH') {
       payload = Bitcoin.script.pubKeyHash.output.encode(hash)
-    } else if (type == 'P2SH') {
+    } else if (type === 'P2SH') {
       payload = Bitcoin.script.scriptHash.output.encode(hash)
     } else {
       throw new Error(`unsupported address type : ${type}`)
