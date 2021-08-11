@@ -652,12 +652,18 @@ class Address extends BCHJSAddress {
 */
   _ensureValidAddress (address) {
     try {
-      bchaddrjs.toCashAddress(address)
+      this.toXAddress(address)
+      return
     } catch (err) {
-      throw new Error(
-        `Invalid BCH address. Double check your address is valid: ${address}`
-      )
     }
+    try {
+      bchaddrjs.toCashAddress(address)
+      return
+    } catch (err) {
+    }
+    throw new Error(
+      `Invalid BCH address. Double check your address is valid: ${address}`
+    )
   }
 }
 

@@ -189,8 +189,8 @@ class UTXO {
       // Throw an error if there are more than 20 addresses passed in at a time.
       if (address.length > 20) throw new Error('Too many elements, 20 max.')
 
-      // Covert each address to a BCH address.
-      const addr = address.map(elem => this.slp.Address.toCashAddress(elem))
+      // Covert each address to a XPI address.
+      const addr = address.map(elem => this.slp.Address.toXAddress(elem))
 
       // Get the UTXOs associated with the address.
       const utxoData = await this.electrumx.utxo(addr)
