@@ -1,5 +1,5 @@
 {
-  "name": "@psf/bch-js",
+  "name": "@abcpros/bch-js",
   "version": "4.0.0",
   "description": "The FullStack.cash JavaScript library for Bitcoin Cash and SLP Tokens",
   "author": "Chris Troutner <chris.troutner@gmail.com>",
@@ -36,11 +36,12 @@
     "url": "git+https://github.com/Permissionless-Software-Foundation/bch-js.git"
   },
   "dependencies": {
+    "@abcpros/xaddress": "^0.0.6",
     "@psf/bip21": "^2.0.1",
     "@psf/bip32-utils": "^1.0.0",
     "@psf/bitcoincash-ops": "^2.0.0",
     "@psf/bitcoincashjs-lib": "^4.0.2",
-    "@psf/coininfo": "^4.0.0",
+    "@abcpros/coininfo": "^5.2.0",
     "@uppy/core": "^1.10.4",
     "@uppy/tus": "^1.5.12",
     "axios": "^0.21.1",

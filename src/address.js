@@ -1,7 +1,8 @@
 // const axios = require("axios")
 const Bitcoin = require('@psf/bitcoincashjs-lib')
 const cashaddr = require('cashaddrjs')
-const coininfo = require('@psf/coininfo')
+const coininfo = require('@abcpros/coininfo')
+const xaddr = require('@abcpros/xaddress')
 
 class Address {
   constructor (config) {
@@ -55,30 +56,72 @@ class Address {
    */
   // Translate address from any address format into a specific format.
   toLegacyAddress (address) {
-    const { prefix, type, hash } = this._decode(address)
+    const decoded = this._decode(address)
 
-    let bitcoincash
-    switch (prefix) {
-      case 'bitcoincash':
-        bitcoincash = coininfo.bitcoincash.main
+    let coinName
+    let version, type, prefix, hash, network
+
+    if (decoded.format === 'xaddr') {
+      // The address input is xaddress
+      type = Bitcoin.script.classifyOutput(decoded.payload)
+      coinName = decoded.prefix
+
+      switch (decoded.network) {
+        case xaddr.NetworkType.MAIN:
+          network = 'mainnet'
+          break
+        case xaddr.NetworkType.TEST:
+          network = 'testnet'
+          break
+        case xaddr.NetworkType.REGTEST:
+          network = 'regtest'
+          break
+        default:
+          throw new Error(`Invalid network : ${decoded.network}`)
+      }
+    } else {
+      // cashaddr or legacy addr
+      prefix = decoded.prefix
+      type = decoded.type
+      hash = decoded.hash
+      coinName = 'bitcoincash'
+
+      switch (prefix) {
+        case 'bitcoincash':
+          network = 'mainnet'
+          break
+        case 'bchtest':
+          network = 'testnet'
+          break
+        case 'bchreg':
+          network = 'regtest'
+          break
+        default:
+          throw new Error(`unsupported prefix : ${prefix}`)
+      }
+    }
+
+    let info
+    switch (network) {
+      case 'mainnet':
+        info = coininfo[coinName].main
         break
-      case 'bchtest':
-        bitcoincash = coininfo.bitcoincash.test
+      case 'testnet':
+        info = coininfo[coinName].test
         break
-      case 'bchreg':
-        bitcoincash = coininfo.bitcoincash.regtest
+      case 'regtest':
+        info = coininfo[coinName].regtest
         break
       default:
         throw new Error(`unsupported prefix : ${prefix}`)
     }
 
-    let version
     switch (type) {
       case 'P2PKH':
-        version = bitcoincash.versions.public
+        version = info.versions.public
         break
       case 'P2SH':
-        version = bitcoincash.versions.scripthash
+        version = info.versions.scripthash
         break
       default:
         throw new Error(`unsupported address type : ${type}`)
@@ -127,6 +170,52 @@ class Address {
 
     if (prefix) return cashAddress
     return cashAddress.split(':')[1]
+  }
+
+  /**
+   * @api Address.toXddress() toXAddress()
+   * @apiName toXAddress
+   * @apiGroup Address
+   * @apiDescription Convert legacy to cashAddress format
+   *
+   * @apiExample Example usage:
+   * // mainnet
+   * bchjs.Address.toXAddress('1HiaTupadqQN66Tvgt7QSE5Wg13BUy25eN')
+   * // lotus_16PSJNj8qQUiF2nqfBNGNXk9bzL1ycs7ebawJiAjT
+   */
+  toXAddress (address, regtest = false) {
+    const decoded = this._decode(address)
+    if (decoded.format === 'xaddr') return address
+
+    const xType = xaddr.XAddressType.ScriptPubKey // currently always script pubkey
+    let network
+    let payload
+    switch (decoded.prefix) {
+      case 'bitcoincash':
+        network = xaddr.NetworkType.MAIN
+        break
+      case 'bchtest':
+        network = xaddr.NetworkType.TEST
+        break
+      case 'bchreg':
+        network = xaddr.NetworkType.REGTEST
+        break
+    }
+    if (regtest && decoded.format === 'legacy') {
+      network = xaddr.NetworkType.REGTEST
+    }
+    const type = decoded.type // address type
+    const hash = Buffer.from(decoded.hash)
+    if (type === 'P2PKH') {
+      payload = Bitcoin.script.pubKeyHash.output.encode(hash)
+    } else if (type == 'P2SH') {
+      payload = Bitcoin.script.scriptHash.output.encode(hash)
+    } else {
+      throw new Error(`unsupported address type : ${type}`)
+    }
+
+    const xaddress = new xaddr.XAddress(xType, network, payload)
+    return xaddr.XAddress.encode(xaddress)
   }
 
   // Converts any address format to hash160
@@ -187,6 +276,10 @@ class Address {
   }
 
   _decode (address) {
+    try {
+      return this._decodeXAddress(address)
+    } catch (error) {}
+
     try {
       return this._decodeLegacyAddress(address)
     } catch (error) {}
@@ -255,6 +348,16 @@ class Address {
         return decoded
       } catch (error) {}
     }
+
+    throw new Error(`Invalid format : ${address}`)
+  }
+
+  _decodeXAddress (address) {
+    try {
+      const decoded = xaddr.XAddress.decode(address)
+      decoded.format = 'xaddr'
+      return decoded
+    } catch (error) {}
 
     throw new Error(`Invalid format : ${address}`)
   }
@@ -340,6 +443,30 @@ class Address {
    */
   isCashAddress (address) {
     return this.detectAddressFormat(address) === 'cashaddr'
+  }
+
+  /**
+   * @api Address.isXAddress() isXAddress()
+   * @apiName isXAddress
+   * @apiGroup Address
+   * @apiDescription Detect if xAddr encoded address.
+   *
+   * @apiExample Example usage:
+   * // mainnet cashaddr
+   * bchjs.Address.isXAddress('bitcoincash:qqfx3wcg8ts09mt5l3zey06wenapyfqq2qrcyj5x0s')
+   * // false
+   *
+   * // mainnet w/ no cashaddr prefix
+   * bchjs.Address.isXAddress('lotus_1PrR2xSL3xqNhu1nhDME4tjDijtxHRBkFwzvFE')
+   * // true
+   *
+   * // mainnet legacy
+   * bchjs.Address.isXAddress('18HEMuar5ZhXDFep1gEiY1eoPPcBLxfDxj')
+   * // false
+   *
+   */
+  isXAddress (address) {
+    return this.detectAddressFormat(address) === 'xaddr'
   }
 
   /**
@@ -626,6 +753,19 @@ class Address {
 
     const decoded = this._decode(address)
 
+    if (decoded.format === 'xaddr') {
+      switch (decoded.network) {
+        case xaddr.NetworkType.MAIN:
+          return 'mainnet'
+        case xaddr.NetworkType.TEST:
+          return 'testnet'
+        case xaddr.NetworkType.REGTEST:
+          return 'regtest'
+        default:
+          throw new Error(`Invalid network : ${decoded.network}`)
+      }
+    }
+
     switch (decoded.prefix) {
       case 'bitcoincash':
         return 'mainnet'
@@ -672,6 +812,21 @@ class Address {
   // Detect address type.
   detectAddressType (address) {
     const decoded = this._decode(address)
+
+    if (decoded.format === 'xaddr') {
+      // Calculate the address type
+      const type = Bitcoin.script.classifyOutput(decoded.payload)
+      switch (type) {
+        case 'pubkeyhash':
+          return 'P2PKH'.toLowerCase()
+        case 'scripthash':
+          return 'P2SH'.toLowerCase()
+        case 'pubkey':
+          return 'P2PK'.toLowerCase()
+        default:
+          return 'nonstandard'
+      }
+    }
 
     return decoded.type.toLowerCase()
   }

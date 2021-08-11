@@ -133,6 +133,26 @@ describe('#HDNode', () => {
     })
   })
 
+  describe('#toXAddress', () => {
+    fixtures.toXAddress.forEach(fixture => {
+      it(`should get address ${fixture.address} from HDNode`, async () => {
+        const rootSeedBuffer = await bchjs.Mnemonic.toSeed(fixture.mnemonic)
+        const hdNode = bchjs.HDNode.fromSeed(rootSeedBuffer)
+        const childHDNode = bchjs.HDNode.derivePath(hdNode, '0')
+        const addy = bchjs.HDNode.toXAddress(childHDNode)
+        assert.strictEqual(addy, fixture.address)
+      })
+
+      it(`should get address ${fixture.regtestAddress} from HDNode`, async () => {
+        const rootSeedBuffer = await bchjs.Mnemonic.toSeed(fixture.mnemonic)
+        const hdNode = bchjs.HDNode.fromSeed(rootSeedBuffer)
+        const childHDNode = bchjs.HDNode.derivePath(hdNode, '0')
+        const addr = bchjs.HDNode.toXAddress(childHDNode, true)
+        assert.strictEqual(addr, fixture.regtestAddress)
+      })
+    })
+  })
+
   describe('#toWIF', () => {
     fixtures.toWIF.forEach(fixture => {
       it(`should get privateKeyWIF ${fixture.privateKeyWIF} from HDNode`, () => {

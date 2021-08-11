@@ -119,6 +119,42 @@
     "786800480464fed0eb9edc14606e71076ccfbfcb",
     "503fa1e406da9a90e029df9a7966d33cc1b1b057"
   ],
+  "xaddrMainnetP2PKH": [
+    "lotus_16PSJKnQX1NkknQ2dBsEdPsrtH1YmPb5bMX9aBmkV",
+    "lotus_16PSJPCHXPVQEB8sBV6DkAGdgzZfYRvUHA112NVKy",
+    "lotus_16PSJLSJcsmykeRzPxEVqBDQUvRevaXu71WnqSRCM",
+    "lotus_16PSJK9ffmj7chjvZWdGDnj4vQGu4TAesU7KBe31c",
+    "lotus_16PSJPGh6dw9P7RVNG8w6gehPCN9CbrXauZ5FB2g5",
+    "lotus_16PSJHWFU9BJjR4U3KoPM5Arp52hzy95eT3UabwoQ",
+    "lotus_16PSJQWr4UhUAbcV4cc249TTK9CbrFofCBCatukav",
+    "lotus_16PSJJAyWoM6FqAP1vgKAsEnUBJFVpsD92xVoCUew",
+    "lotus_16PSJPPNkFiJzkA3oGqtiEvqLukw3nQdqhvmoNwMu",
+    "lotus_16PSJNGTrHSq1oQc3jiQ7BFBgocN8fhRf7G8KrnC1"
+  ],
+  "xaddrMainnetP2SH": [
+    "lotus_1PrR2xSL3xqNhu1nhDME4tjDijtxHRBkFwzvFE",
+    "lotus_1PrQqgHaWUDVrft7xfqsgnhyw4tc8ZkNv2Mv52",
+    "lotus_1PrRXh3w1sHRQLvfZuPMdRgZWHXWeUR3qP2oeb",
+    "lotus_1PrQwJj3n5scC5FgT4V8Bkc54hw9oaj3pXWM1E",
+    "lotus_1PrRQoNUetUxJFdY2QM5kf8koN8YD7ag4R1dAt",
+    "lotus_1PrR7tjzED3yeXnAhb7nT5ARx7PcpMRvuSrfiV",
+    "lotus_1PrR4YQi5bcixp2WoCPmm1M1j6i3NgnECtxde1",
+    "lotus_1PrQs9JaNAcLZ56H2smA7kfQRPXfdo19xAV9SN",
+    "lotus_1PrRtppw4bQBZ9QXsCWXRim9YHBTKFomGdKZnU",
+    "lotus_1PrRADZYTXFVb1hvtDojqJY2abZgJdDtD4dkxK"
+  ],
+  "xaddrTestnetP2SH": [
+    "lotusT16PSJHmKx4FHiMQapPqfXQJ4ozY2gkgYFsg3Td7E2",
+    "lotusT16PSJKEKsobbsDTFvkypkdovFGbbXjyRp6PGiJBXE",
+    "lotusT16PSJMimya1udy5WVcQ6Rf4Ax6hgRKTuLiQgNGwZp",
+    "lotusT16PSJQaJ8kpyiFSe7g8Z6ZNH3pfbrBkCCeLdBU8XF",
+    "lotusT16PSJLPkig9UWco8dSy6nCSgoGGHUiQFKQJs6Y1Jn",
+    "lotusT16PSJQtbaUTiUPoCih81gmnbEXBaxjeUGAXsUeQ5Y",
+    "lotusT16PSJQKT9bwG5mveRfxyEe1YnNpqGrwBV7oyaYFCB",
+    "lotusT16PSJLUkQTp5K2Pi7mXWvtWg8M7nThAuafxmXbmCp",
+    "lotusT16PSJLoJtQW1qV9wmjiLuFzsrUjKsugVqD2CNmQwY",
+    "lotusT16PSJKZzHJgi57LpYNGvgivEJ4njnL3bdBBLeWxgv"
+  ],
   "mainnetXPub": [
     {
       "xpub": "xpub6CVcpZVmPNjuniVYu1mLnLjDBfxWpx7LS25uxwRm5BLbXMCJmRaQgAxuqZDoYDeidJUh5QUatLJPWpeCkEK648hExyKFezqxJz4CMfEoYAc",

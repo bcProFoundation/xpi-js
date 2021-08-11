@@ -29,7 +29,9 @@ const MAINNET_ADDRESSES = flatten([
   mainnetXpubs,
   fixtures.legacyMainnetP2PKH,
   fixtures.legacyMainnetP2SH,
-  fixtures.cashaddrMainnetP2PKH
+  fixtures.cashaddrMainnetP2PKH,
+  fixtures.xaddrMainnetP2PKH,
+  fixtures.xaddrMainnetP2SH
 ])
 
 const testnetXpubs = []
@@ -46,6 +48,12 @@ const CASHADDR_ADDRESSES = flatten([
   fixtures.cashaddrMainnetP2PKH,
   fixtures.cashaddrMainnetP2SH,
   fixtures.cashaddrTestnetP2PKH
+])
+
+const XADDR_ADDRESSES = flatten([
+  fixtures.xaddrMainnetP2PKH,
+  fixtures.xaddrMainnetP2SH,
+  fixtures.xaddrTestnetP2SH
 ])
 
 const CASHADDR_ADDRESSES_NO_PREFIX = CASHADDR_ADDRESSES.map(address => {
@@ -71,12 +79,14 @@ const P2PKH_ADDRESSES = flatten([
   fixtures.legacyTestnetP2PKH,
   fixtures.cashaddrMainnetP2PKH,
   fixtures.cashaddrTestnetP2PKH,
-  fixtures.cashaddrRegTestP2PKH
+  fixtures.cashaddrRegTestP2PKH,
+  fixtures.xaddrMainnetP2PKH
 ])
 
 const P2SH_ADDRESSES = flatten([
   fixtures.legacyMainnetP2SH,
-  fixtures.cashaddrMainnetP2SH
+  fixtures.cashaddrMainnetP2SH,
+  fixtures.xaddrMainnetP2SH
 ])
 
 describe('#address.js', () => {
@@ -201,6 +211,46 @@ describe('#address.js', () => {
           }, bchjs.BitcoinCash.InvalidAddressError)
           assert.throws(() => {
             bchjs.BitcoinCash.Address.toCashAddress('some invalid address')
+          }, bchjs.BitcoinCash.InvalidAddressError)
+        })
+      })
+    })
+
+    describe('#toXAddress', () => {
+      it('should convert legacy base58Check address to xaddr', () => {
+        assert.deepStrictEqual(
+          LEGACY_ADDRESSES.map(address =>
+            bchjs.Address.toXAddress(address)
+          ),
+          XADDR_ADDRESSES
+        )
+      })
+
+      it('should convert cashaddr address to xaddr', () => {
+        assert.deepStrictEqual(
+          CASHADDR_ADDRESSES.map(address =>
+            bchjs.Address.toXAddress(address)
+          ),
+          XADDR_ADDRESSES
+        )
+      })
+
+      it('should translate xaddr address format to itself correctly', () => {
+        assert.deepStrictEqual(
+          XADDR_ADDRESSES.map(address =>
+            bchjs.Address.toXAddress(address, true)
+          ),
+          XADDR_ADDRESSES
+        )
+      })
+
+      describe('errors', () => {
+        it('should fail when called with an invalid address', () => {
+          assert.throws(() => {
+            bchjs.BitcoinCash.Address.toXAddress()
+          }, bchjs.BitcoinCash.InvalidAddressError)
+          assert.throws(() => {
+            bchjs.BitcoinCash.Address.toXAddress('some invalid address')
           }, bchjs.BitcoinCash.InvalidAddressError)
         })
       })
@@ -390,6 +440,17 @@ describe('#address.js', () => {
           it(`should detect ${address} is a cashaddr address`, () => {
             const isCashaddr = bchjs.Address.isCashAddress(address)
             assert.strictEqual(isCashaddr, true)
+          })
+        })
+      })
+
+      describe('#isXAddress', () => {
+        describe('is xaddr', () => {
+          XADDR_ADDRESSES.forEach(address => {
+            it(`should detect ${address} is a xaddr address`, () => {
+              const isXAddr = bchjs.Address.isXAddress(address)
+              assert.strictEqual(isXAddr, true)
+            })
           })
         })
       })

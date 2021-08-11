@@ -261,6 +261,33 @@
       "regtestAddress": "bchreg:qpjh00scq3ratsytmttle5cml6yyk9stvc23mtm9uv"
     }
   ],
+  "toXAddress": [
+    {
+      "mnemonic": "rare dinosaur army fat spend average design order ritual town brave spike",
+      "address": "lotus_16PSJNaAAyfQ3H9XPPeNsq7ZHGdLZwVq3RED2BaDp",
+      "regtestAddress": "lotusR16PSJNaAAyfQ3H9XPPeNsq7ZHGdLZwVq3REALUYaS"
+    },
+      {
+      "mnemonic": "rabbit track ahead moral either upper tiger paper echo snow multiply trial kind two cram",
+      "address": "lotus_16PSJJvU2Fbw1k3W6Q6tdNFBzKQ7VZRjthVibc1ct",
+      "regtestAddress": "lotusR16PSJJvU2Fbw1k3W6Q6tdNFBzKQ7VZRjthViWBx6Z"
+    },
+    {
+      "mnemonic": "shadow steak gospel heart life wedding loud jar marriage during lecture stove exclude price worry story art relief",
+      "address": "lotus_16PSJKh7BGZffz1nWMMvcaTw3r7jFzxxpkTmjzwM1",
+      "regtestAddress": "lotusR16PSJKh7BGZffz1nWMMvcaTw3r7jFzxxpkTsDRTB6"
+    },
+    {
+      "mnemonic": "supply salute they blood coyote century envelope circle baby armed comfort sport jazz clarify museum portion wolf hour donkey frog juice",
+      "address": "lotus_16PSJJDcSgf4t7pms2ufQBgzthFrTC3nAydTA4aZn",
+      "regtestAddress": "lotusR16PSJJDcSgf4t7pms2ufQBgzthFrTC3nAydU9qnjv"
+    },
+    {
+      "mnemonic": "tunnel ugly degree bid merry world pupil tornado ski rent casino rent security length wet twice luxury rookie invite destroy busy leopard escape shoe",
+      "address": "lotus_16PSJLDg3pJRccDwWUXHt2JQEhiwf33V5PqdHrWTD",
+      "regtestAddress": "lotusR16PSJLDg3pJRccDwWUXHt2JQEhiwf33V5PqhXNThc"
+    }
+  ],
   "toWIF": [
     {
       "privateKeyWIF": "L3nMAFHGojwdTajZAjEfSsqyP8TmQgqpxmhKNdwpLiNw4EBuhUcg",

@@ -1,5 +1,5 @@
 const Bitcoin = require('@psf/bitcoincashjs-lib')
-const coininfo = require('@psf/coininfo')
+const coininfo = require('@abcpros/coininfo')
 const bip32utils = require('@psf/bip32-utils')
 const bchaddrjs = require('bchaddrjs-slp')
 
@@ -109,6 +109,40 @@ class HDNode {
    */
   toCashAddress (hdNode, regtest = false) {
     return this._address.toCashAddress(hdNode.getAddress(), true, regtest)
+  }
+
+  /**
+   * @api HDNode.toXAddress() toXAddress()
+   * @apiName toXAddress
+   * @apiGroup HDNode
+   * @apiDescription
+   * Get xaddress of HDNode.
+   *
+   * @apiExample Example usage:
+   *   // create mnemonic
+   *   let mnemonic = bchjs.Mnemonic.generate(128);
+   *   // create seed buffer from mnemonic
+   *   let seedBuffer = await bchjs.Mnemonic.toSeed(mnemonic);
+   *   // create HDNode from seed buffer
+   *   let hdNode = bchjs.HDNode.fromSeed(seedBuffer);
+   *   // to cash address
+   *   bchjs.HDNode.toXAddress(hdNode);
+   *   // lotus_16PSJKnQX1NkknQ2dBsEdPsrtH1YmPb5bMX9aBmkV
+   *
+   *   // generate entropy
+   *   let entropy = bchjs.Crypto.randomBytes(32);
+   *   // create mnemonic from entropy
+   *   let mnemonic = bchjs.Mnemonic.fromEntropy(entropy);
+   *   // create seed buffer from mnemonic
+   *   let seedBuffer = await bchjs.Mnemonic.toSeed(mnemonic);
+   *   // create HDNode from seed buffer
+   *   let hdNode = bchjs.HDNode.fromSeed(seedBuffer);
+   *   // to cash address
+   *   bchjs.HDNode.toXAddress(hdNode);
+   *   // lotus_16PSJPCHXPVQEB8sBV6DkAGdgzZfYRvUHA112NVKy
+   */
+  toXAddress (hdNode, regtest = false) {
+    return this._address.toXAddress(hdNode.getAddress(), regtest)
   }
 
   /**
