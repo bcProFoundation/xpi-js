@@ -64,6 +64,7 @@ class Address {
     if (decoded.format === 'xaddr') {
       // The address input is xaddress
       type = Bitcoin.script.classifyOutput(decoded.payload)
+      prefix = decoded.prefix
       coinName = decoded.prefix
 
       switch (decoded.network) {
@@ -79,6 +80,12 @@ class Address {
         default:
           throw new Error(`Invalid network : ${decoded.network}`)
       }
+      if (type === 'pubkeyhash') {
+        hash = Bitcoin.script.pubKeyHash.output.decode(decoded.payload)
+      } else if (type === 'scripthash') {
+        hash = Bitcoin.script.scriptHash.output.decode(decoded.payload)
+      } 
+
     } else {
       // cashaddr or legacy addr
       prefix = decoded.prefix
@@ -118,9 +125,11 @@ class Address {
 
     switch (type) {
       case 'P2PKH':
+      case 'pubkeyhash':
         version = info.versions.public
         break
       case 'P2SH':
+      case 'scripthash':
         version = info.versions.scripthash
         break
       default:

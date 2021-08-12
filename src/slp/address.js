@@ -147,8 +147,7 @@ class Address extends BCHJSAddress {
    */
   toLegacyAddress (address) {
     this._ensureValidAddress(address)
-    const cashAddr = bchaddrjs.toCashAddress(address)
-    return bchAddress.toLegacyAddress(cashAddr)
+    return bchAddress.toLegacyAddress(address)
   }
 
   isLegacyAddress (address) {
@@ -161,6 +160,11 @@ class Address extends BCHJSAddress {
     if (bchaddrjs.isSlpAddress(address)) return false
 
     return bchAddress.isCashAddress(address)
+  }
+
+  isXAddress (address) {
+    this._ensureValidAddress(address)
+    return bchAddress.isXAddress(address)
   }
 
   /**
