@@ -84,8 +84,7 @@ class Address {
         hash = Bitcoin.script.pubKeyHash.output.decode(decoded.payload)
       } else if (type === 'scripthash') {
         hash = Bitcoin.script.scriptHash.output.decode(decoded.payload)
-      } 
-
+      }
     } else {
       // cashaddr or legacy addr
       prefix = decoded.prefix
