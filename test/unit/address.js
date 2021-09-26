@@ -154,6 +154,15 @@ describe('#address.js', () => {
         )
       })
 
+      it('should convert xaddress address to cashaddr', () => {
+        assert.deepStrictEqual(
+          XADDR_ADDRESSES.map(address =>
+            bchjs.Address.toCashAddress(address, true)
+          ),
+          CASHADDR_ADDRESSES
+        )
+      })
+
       it('should translate cashaddr address format to itself correctly', () => {
         assert.deepStrictEqual(
           CASHADDR_ADDRESSES.map(address =>
