@@ -1,7 +1,7 @@
 {
-  "name": "@abcpros/bch-js",
+  "name": "@abcpros/xpi-js",
   "version": "4.0.2",
-  "description": "The FullStack.cash JavaScript library for Bitcoin Cash and SLP Tokens",
+  "description": "The FullStack.cash JavaScript library for Lotus and SLP Tokens on Lotus",
   "author": "Chris Troutner <chris.troutner@gmail.com>",
   "contributors": [
     "Gabriel Cardona <gabriel@bitcoin.com>",
