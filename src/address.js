@@ -166,14 +166,42 @@ class Address {
   toCashAddress (address, prefix = true, regtest = false) {
     const decoded = this._decode(address)
 
-    let prefixString
-    if (regtest) prefixString = 'bchreg'
-    else prefixString = decoded.prefix
+    let type, prefixString, hash
+
+    if (decoded.format === 'xaddr') {
+      // The address input is xaddress
+      type = Bitcoin.script.classifyOutput(decoded.payload)
+
+      switch (decoded.network) {
+        case xaddr.NetworkType.MAIN:
+          prefixString = 'bitcoincash'
+          break
+        case xaddr.NetworkType.TEST:
+          prefixString = 'bchtest'
+          break
+        case xaddr.NetworkType.REGTEST:
+          prefixString = 'bchreg'
+          break
+        default:
+          throw new Error(`Invalid network : ${decoded.network}`)
+      }
+      if (type === 'pubkeyhash') {
+        hash = Bitcoin.script.pubKeyHash.output.decode(decoded.payload)
+      } else if (type === 'scripthash') {
+        hash = Bitcoin.script.scriptHash.output.decode(decoded.payload)
+      }
+    } else {
+      // legacy or cashaddr
+      if (regtest) prefixString = 'bchreg'
+      else prefixString = decoded.prefix
+      type = decoded.type
+      hash = decoded.hash
+    }
 
     const cashAddress = cashaddr.encode(
       prefixString,
-      decoded.type,
-      decoded.hash
+      type,
+      hash
     )
 
     if (prefix) return cashAddress
