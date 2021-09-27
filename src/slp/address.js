@@ -147,14 +147,13 @@ class Address extends BCHJSAddress {
    */
   toLegacyAddress (address) {
     this._ensureValidAddress(address)
-    const cashAddr = bchaddrjs.toCashAddress(address)
+    let cashAddr
+    try {
+      cashAddr = bchaddrjs.toCashAddress(address)
+    } catch (err) {
+      cashAddr = bchAddress.toCashAddress(address)
+    }
     return bchAddress.toLegacyAddress(cashAddr)
-  }
-
-  toXAddress (address) {
-    this._ensureValidAddress(address)
-    const cashAddr = bchaddrjs.toCashAddress(address)
-    return bchAddress.toXAddress(cashAddr)
   }
 
   isLegacyAddress (address) {
@@ -663,11 +662,15 @@ class Address extends BCHJSAddress {
 */
   _ensureValidAddress (address) {
     try {
-      bchaddrjs.toCashAddress(address)
+      bchAddress.toXAddress(address)
     } catch (err) {
-      throw new Error(
-        `Invalid BCH address. Double check your address is valid: ${address}`
-      )
+      try {
+        bchaddrjs.toCashAddress(address)
+      } catch (err) {
+        throw new Error(
+          `Invalid BCH address. Double check your address is valid: ${address}`
+        )
+      }
     }
   }
 }
