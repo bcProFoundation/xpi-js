@@ -32,7 +32,7 @@ declare class TransactionBuilder {
      * // add input with txid and index of vout
      * transactionBuilder.addInput(txid, 0);
      */
-    addInput(txHash: any, vout: any, sequence?: number, prevOutScript: any): void;
+    addInput(txHash: any, vout: any, sequence?: number, prevOutScript?: any): void;
     addInputScript(vout: any, script: any): void;
     tx: any;
     addInputScripts(scripts: any): void;
@@ -84,7 +84,7 @@ declare class TransactionBuilder {
      *  // sign w/ keyPair
      *  transactionBuilder.sign(0, keyPair, redeemScript, transactionBuilder.hashTypes.SIGHASH_ALL, originalAmount, transactionBuilder.signatureAlgorithms.SCHNORR);
      */
-    sign(vin: any, keyPair: any, redeemScript: any, hashType?: number, value: any, signatureAlgorithm: any): void;
+    sign(vin: any, keyPair: any, redeemScript: any, hashType?: number, value?: any, signatureAlgorithm?: any): void;
     /**
      * @api Transaction-Builder.build() build()
      * @apiName Build.
