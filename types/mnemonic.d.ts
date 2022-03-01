@@ -39,7 +39,7 @@ declare class Mnemonic {
      * bchjs.Mnemonic.generate(256, bitbox.Mnemonic.wordLists().korean)
      * // 기능 단추 교육 비난 시집 근육 운동 코미디 숟가락 과목 한동안 유적 시리즈 삼월 앞날 유난히 흰색 사실 논문 장사 어른 논문 의논 장차
      */
-    generate(bits?: number, wordlist: any): string;
+    generate(bits?: number, wordlist?: any): string;
     /**
      * @api Mnemonic.fromEntropy() fromEntropy()
      * @apiName fromEntropy
