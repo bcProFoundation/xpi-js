@@ -1,4 +1,4 @@
-const Bitcoin = require('@psf/bitcoincashjs-lib')
+const Bitcoin = require('@bcpros/bitcoincashjs-lib')
 const coininfo = require('@abcpros/coininfo')
 
 class ECPair {

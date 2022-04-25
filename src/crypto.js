@@ -1,5 +1,5 @@
 const randomBytes = require('randombytes')
-const Bitcoin = require('@psf/bitcoincashjs-lib')
+const Bitcoin = require('@bcpros/bitcoincashjs-lib')
 
 class Crypto {
   /**
