@@ -3,7 +3,7 @@
 
 const BIP39 = require('bip39')
 const randomBytes = require('randombytes')
-const Bitcoin = require('@psf/bitcoincashjs-lib')
+const Bitcoin = require('@bcpros/bitcoincashjs-lib')
 const Buffer = require('safe-buffer').Buffer
 const wif = require('wif')
 

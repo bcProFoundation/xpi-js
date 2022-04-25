@@ -1,5 +1,5 @@
 // const axios = require("axios")
-const Bitcoin = require('@psf/bitcoincashjs-lib')
+const Bitcoin = require('@bcpros/bitcoincashjs-lib')
 const cashaddr = require('cashaddrjs')
 const coininfo = require('@abcpros/coininfo')
 const xaddr = require('@abcpros/xaddress')

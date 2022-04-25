@@ -1,6 +1,6 @@
 {
   "name": "@abcpros/xpi-js",
-  "version": "4.0.6",
+  "version": "4.0.7",
   "description": "The FullStack.cash JavaScript library for Lotus and SLP Tokens on Lotus",
   "author": "Chris Troutner <chris.troutner@gmail.com>",
   "contributors": [
@@ -42,7 +42,7 @@
     "@psf/bip21": "^2.0.1",
     "@psf/bip32-utils": "^1.0.0",
     "@psf/bitcoincash-ops": "^2.0.0",
-    "@psf/bitcoincashjs-lib": "^4.0.2",
+    "@bcpros/bitcoincashjs-lib": "^1.0.1",
     "@uppy/core": "^1.10.4",
     "@uppy/tus": "^1.5.12",
     "axios": "^0.21.1",
