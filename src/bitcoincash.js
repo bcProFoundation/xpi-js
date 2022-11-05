@@ -3,7 +3,7 @@ const sb = require('satoshi-bitcoin')
 const bitcoinMessage = require('bitcoinjs-message')
 const bs58 = require('bs58')
 const bip21 = require('@psf/bip21')
-const coininfo = require('@abcpros/coininfo')
+const coininfo = require('@bcpros/coininfo')
 const bip38 = require('bip38')
 const wif = require('wif')
 

@@ -1,6 +1,6 @@
 {
-  "name": "@abcpros/xpi-js",
-  "version": "4.0.7",
+  "name": "@bcpros/xpi-js",
+  "version": "4.0.9",
   "description": "The FullStack.cash JavaScript library for Lotus and SLP Tokens on Lotus",
   "author": "Chris Troutner <chris.troutner@gmail.com>",
   "contributors": [
@@ -37,8 +37,8 @@
     "url": "git+https://github.com/Permissionless-Software-Foundation/bch-js.git"
   },
   "dependencies": {
-    "@abcpros/coininfo": "^5.2.0",
-    "@abcpros/xaddress": "^0.0.9",
+    "@bcpros/coininfo": "^5.2.1",
+    "@bcpros/xaddress": "^0.1.1",
     "@psf/bip21": "^2.0.1",
     "@psf/bip32-utils": "^1.0.0",
     "@psf/bitcoincash-ops": "^2.0.0",
@@ -66,25 +66,24 @@
     "wif": "^2.0.6"
   },
   "devDependencies": {
-    "apidoc": "^0.17.7",
-    "assert": "^2.0.0",
-    "chai": "^4.1.2",
-    "coveralls": "^3.0.2",
-    "eslint": "5.16.0",
-    "eslint-config-prettier": "^6.0.0",
-    "eslint-config-standard": "^14.1.0",
-    "eslint-plugin-node": "^9.1.0",
-    "eslint-plugin-prettier": "^3.1.0",
-    "eslint-plugin-standard": "^4.0.0",
-    "husky": "^4.3.6",
-    "lodash.clonedeep": "^4.5.0",
-    "mocha": "^6.1.4",
-    "node-mocks-http": "^1.7.0",
-    "nyc": "^14.1.0",
-    "prettier": "^1.18.2",
-    "semantic-release": "^17.3.9",
-    "sinon": "^7.3.2",
-    "standard": "^16.0.3"
+    "apidoc": "0.50.5",
+    "assert": "2.0.0",
+    "chai": "4.1.2",
+    "coveralls": "3.0.2",
+    "eslint": "7.17.0",
+    "eslint-config-prettier": "7.1.0",
+    "eslint-config-standard": "16.0.3",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-prettier": "3.3.1",
+    "eslint-plugin-standard": "4.0.0",
+    "husky": "4.3.8",
+    "lodash.clonedeep": "4.5.0",
+    "mocha": "9.2.1",
+    "node-mocks-http": "1.7.0",
+    "nyc": "15.1.0",
+    "semantic-release": "^19.0.2",
+    "sinon": "9.2.2",
+    "standard": "^16.0.4"
   },
   "apidoc": {
     "title": "bch-js",

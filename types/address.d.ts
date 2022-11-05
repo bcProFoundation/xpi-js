@@ -113,7 +113,7 @@ declare class Address {
         format: string;
     };
     _decodeCashAddress(address: any): any;
-    _decodeXAddress(address: any): import("@abcpros/xaddress").XAddress;
+    _decodeXAddress(address: any): import("@bcpros/xaddress").XAddress;
     _encodeAddressFromHash160(address: any): any;
     /**
      * @api Address.isLegacyAddress() isLegacyAddress()

@@ -1,5 +1,5 @@
 const Bitcoin = require('@bcpros/bitcoincashjs-lib')
-const coininfo = require('@abcpros/coininfo')
+const coininfo = require('@bcpros/coininfo')
 
 class ECPair {
   static setAddress (address) {

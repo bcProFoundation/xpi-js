@@ -1,5 +1,5 @@
 const Bitcoin = require('@bcpros/bitcoincashjs-lib')
-const coininfo = require('@abcpros/coininfo')
+const coininfo = require('@bcpros/coininfo')
 const bip66 = require('bip66')
 const bip68 = require('bc-bip68')
 

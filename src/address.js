@@ -1,8 +1,8 @@
 // const axios = require("axios")
 const Bitcoin = require('@bcpros/bitcoincashjs-lib')
 const cashaddr = require('cashaddrjs')
-const coininfo = require('@abcpros/coininfo')
-const xaddr = require('@abcpros/xaddress')
+const coininfo = require('@bcpros/coininfo')
+const xaddr = require('@bcpros/xaddress')
 
 class Address {
   constructor (config) {
@@ -316,19 +316,19 @@ class Address {
   _decode (address) {
     try {
       return this._decodeXAddress(address)
-    } catch (error) {}
+    } catch (error) { }
 
     try {
       return this._decodeLegacyAddress(address)
-    } catch (error) {}
+    } catch (error) { }
 
     try {
       return this._decodeCashAddress(address)
-    } catch (error) {}
+    } catch (error) { }
 
     try {
       return this._encodeAddressFromHash160(address)
-    } catch (error) {}
+    } catch (error) { }
 
     throw new Error(`Unsupported address format : ${address}`)
   }
@@ -384,7 +384,7 @@ class Address {
         const decoded = cashaddr.decode(`${prefixes[i]}:${address}`)
         decoded.format = 'cashaddr'
         return decoded
-      } catch (error) {}
+      } catch (error) { }
     }
 
     throw new Error(`Invalid format : ${address}`)
@@ -395,7 +395,7 @@ class Address {
       const decoded = xaddr.XAddress.decode(address)
       decoded.format = 'xaddr'
       return decoded
-    } catch (error) {}
+    } catch (error) { }
 
     throw new Error(`Invalid format : ${address}`)
   }
@@ -407,7 +407,7 @@ class Address {
         cashAddress: this.hash160ToCash(address),
         format: 'hash160'
       }
-    } catch (error) {}
+    } catch (error) { }
 
     throw new Error(`Invalid format : ${address}`)
   }
