@@ -38,7 +38,7 @@ const Ninsight = require('./ninsight')
 const Electrumx = require('./electrumx')
 
 class BCHJS {
-  constructor(config) {
+  constructor (config) {
     // Try to retrieve the REST API URL from different sources.
     if (config && config.restURL && config.restURL !== '') {
       this.restURL = config.restURL

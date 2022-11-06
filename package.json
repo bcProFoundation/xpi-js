@@ -1,6 +1,6 @@
 {
   "name": "@bcpros/xpi-js",
-  "version": "4.0.10",
+  "version": "4.0.11",
   "description": "The FullStack.cash JavaScript library for Lotus and SLP Tokens on Lotus",
   "author": "Chris Troutner <chris.troutner@gmail.com>",
   "contributors": [
@@ -49,7 +49,7 @@
     "bc-bip68": "^1.0.5",
     "bchaddrjs-slp": "^0.2.5",
     "bigi": "^1.4.2",
-    "bignumber.js": "^9.0.0",
+    "bignumber.js": "^9.0.1",
     "bip-schnorr": "^0.3.0",
     "bip38": "^2.0.2",
     "bip39": "^3.0.2",
